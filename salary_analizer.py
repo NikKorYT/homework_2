@@ -22,10 +22,11 @@ def total_salary(path) -> tuple:
         return "File not found"                   #return the error message if the file is not found
 
 if __name__ == "__main__":
-    if total_salary("salary_file.txt") == "File not found":
+    function = total_salary("salary.txt")
+    if function == "File not found":
         print("Файл не знайдено")
     else:
-        total, average = total_salary("salary_file.txt")
+        total, average = function
         print(f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {average}")
 
 
