@@ -25,7 +25,7 @@ def total_salary(path) -> tuple:
         return "Error"                   #return the error message if the file is not found
 
 if __name__ == "__main__":
-    function = total_salary("salary.txt")
+    function = total_salary("./salary.txt")
     if function == "Error":
         print("Файл не знайдено, або він пошкоджений")
     else:
