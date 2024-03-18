@@ -5,16 +5,15 @@ def main():
     print("Welcome to the assistant bot!")
     contacts = {}
     while True:
-        #Getting the input from the user, firest word is a command, other words are arguments
+        #Getting the input from the user
         user_input = input("\nEnter a command: ")
         command, *args = parse_input(user_input)
 
-        #If there is a word "close" or "exit" in the command, the cycle is interrupted
+        #Checking the command and calling the appropriate function
         if command in ["close", "exit"]:
             print("Good bye!")
             break
         
-        #If the command is "hello", the bot greets the user
         elif command == "hello":
             print("How can I help you?")
             
@@ -30,14 +29,16 @@ def main():
         elif command == "all":
             print(print_all_contacts(contacts))
             
-            
+        # if the command is not recognized - print an error message 
         else:
             print("Invalid command.")
     
     
 def parse_input(user_input) -> tuple:
     """Function is finding a command in the input and returns it"""
+    #Splitting the input into words, first word is a command, other words are arguments
     cmd, *args = user_input.split()
+    #Converting the command to lower case and deleting extra spaces
     cmd = cmd.strip().lower()
     return cmd, *args
 
@@ -45,6 +46,7 @@ def parse_input(user_input) -> tuple:
 def add_contact(args, contacts) -> str:
     """Function is adding a contact to the contacts dictionary. Returns a message about the result.
     """
+    #Getting the name and phone from the args
     name, phone = args
     contacts[name] = phone
     return "Contact added."
@@ -53,6 +55,7 @@ def change_contact(args, contacts) -> str:
     """Function is changing the phone number for the contact in the contacts dictionary. Returns a message about the result.
     """
     name, phone = args
+    #Checking if the contact is in the contacts dictionary
     if name in contacts:
         contacts[name] = phone
         return "Contact changed."
